@@ -26,6 +26,6 @@ module DevTools::Cli
       DevTools::Node.new(node).enter
     end
 
-    register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp sub-command", "Operations for node components")
+    register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components")
   end
 end
