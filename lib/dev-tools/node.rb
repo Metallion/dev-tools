@@ -23,6 +23,10 @@ module DevTools
       }
     end
 
+    def name
+      @conf.name
+    end
+
     def start
       cmd = ""
       cmd += "qemu-system-x86_64 "

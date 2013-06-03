@@ -2,6 +2,14 @@
 
 module DevTools
   class Component
+    attr_reader :node
+
+    def self.enabled(project)
+      DevTools::Node.enabled.map { |node|
+        node.comps[project]
+      }.flatten
+    end
+
     def initialize(node,project,name)
       @node = node
       @project = project
