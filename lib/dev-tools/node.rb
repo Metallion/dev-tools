@@ -3,7 +3,7 @@
 module DevTools
   class Node
     def initialize(name)
-      path = "#{DevTools::Constants::Config::PATH}/#{name}.conf"
+      path = "#{DevTools::Constants::Config::PATH}/enabled/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)
     end
 
