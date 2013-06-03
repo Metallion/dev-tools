@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
 require 'rubygems'
+require 'logger'
 
 module DevTools
 
   def self.conf
     @conf
+  end
+
+  def self.logger
+    @logger ||= ::Logger.new(STDOUT)
   end
 
   module Config
@@ -23,6 +28,7 @@ module DevTools
   autoload :Node, 'dev-tools/node'
   autoload :Shell, 'dev-tools/shell'
   autoload :Bridge, 'dev-tools/bridge'
+  autoload :Logger, 'dev-tools/logger'
 
   module Constants
     autoload :NFS, 'dev-tools/constants/nfs'

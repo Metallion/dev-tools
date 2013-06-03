@@ -25,7 +25,7 @@ module DevTools
       cmd += "-vnc :#{@conf.vnc_port} "
       cmd += "-net nic,macaddr=#{@conf.mac_addr} -net tap "
 
-      puts "starting #{@conf.name}"
+      DevTools.logger.info "starting #{@conf.name}"
       pid = spawn(cmd)
       Process.detach pid
     end
@@ -35,7 +35,7 @@ module DevTools
       user = @conf.username
       ip = @conf.ip_address
 
-      puts "stopping #{@conf.name}"
+      DevTools.logger.info "stopping #{@conf.name}"
       DevTools::Shell.run("ssh -i #{key} #{user}@#{ip} #{cmd}")
     end
   end

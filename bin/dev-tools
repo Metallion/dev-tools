@@ -6,4 +6,9 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'dev-tools'
 require 'thor'
 
-DevTools::Cli::Root.start(args.dup)
+conf_path = "#{DevTools::Constants::Config::PATH}/dev-tools.conf"
+DevTools.instance_eval {
+  @conf = DevTools::Config::DevTools.load(conf_path)
+}
+
+DevTools::Cli::Root.start
