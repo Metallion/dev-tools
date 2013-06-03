@@ -18,5 +18,13 @@ module DevTools
     def stop
       @node.run(@conf.stop_cmd)
     end
+
+    def show_log?
+      @conf.show_log
+    end
+
+    def log_path
+      @conf.log_path
+    end
   end
 end

@@ -6,10 +6,10 @@ module DevTools::Config
     param :stop_cmd
 
     param :show_log, :default => false
-    param :log_file, :default => nil
+    param :log_path, :default => nil
   end
 
   def validate
-    errors << "show_log? set to true but no log file defined." if @config[:show_log?] && !@config[:log_file]
+    errors << "show_log set to true but no log file defined." if @config[:show_log] && !@config[:log_file]
   end
 end
