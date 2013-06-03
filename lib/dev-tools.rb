@@ -5,7 +5,12 @@ module DevTools
     autoload :Node, 'dev-tools/config/node'
     autoload :Comp, 'dev-tools/config/comp'
   end
+
   module Cli
     autoload :Root, 'dev-tools/cli/root'
+  end
+
+  module Constants
+    autoload :NFS, 'dev-tools/constants/nfs'
   end
 end

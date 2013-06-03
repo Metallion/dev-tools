@@ -6,4 +6,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'dev-tools'
 require 'thor'
 
-Cli::Root.start(args.dup)
+DevTools::Cli::Root.start(args.dup)
