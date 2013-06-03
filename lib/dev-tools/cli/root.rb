@@ -27,5 +27,6 @@ module DevTools::Cli
     end
 
     register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components")
+    register(DevTools::Cli::Log, DevTools::Cli::Log.namespace, "log", "Operations for component logs")
   end
 end

@@ -11,6 +11,10 @@ module DevTools
       @conf = DevTools::Config::Comp.load(path)
     end
 
+    def name
+      @conf.name
+    end
+
     def start
       @node.run(@conf.start_cmd)
     end

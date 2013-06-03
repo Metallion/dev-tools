@@ -2,6 +2,7 @@
 
 module DevTools::Config
   class Comp < Fuguta::Configuration
+    param :name
     param :start_cmd
     param :stop_cmd
 

@@ -25,10 +25,12 @@ module DevTools
     require 'thor'
     autoload :Root, 'dev-tools/cli/root'
     autoload :Comp, 'dev-tools/cli/comp'
+    autoload :Log, 'dev-tools/cli/log'
   end
 
   autoload :Node, 'dev-tools/node'
   autoload :Component, 'dev-tools/component'
+  autoload :Screen, 'dev-tools/screen'
   autoload :Shell, 'dev-tools/shell'
   autoload :Bridge, 'dev-tools/bridge'
   autoload :Logger, 'dev-tools/logger'
