@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-module DevTools::Constants
-  class Config
-    CONF_PATH="/etc/dev-tools".freeze
-  end
+module DevTools::Constants::Config
+  PATH="/etc/dev-tools".freeze
 end

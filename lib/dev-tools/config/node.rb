@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 module DevTools::Config
-  class Node
+  class Node < Fuguta::Configuration
     param :name
     param :image_location
     param :memory_size, :default => 3072

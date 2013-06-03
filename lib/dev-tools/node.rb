@@ -2,8 +2,15 @@
 
 module DevTools
   class Node
+
+    def self.enabled
+      DevTools.conf.enabled_nodes.map {|node_name|
+        Node.new(node_name)
+      }
+    end
+
     def initialize(name)
-      path = "#{DevTools::Constants::Config::PATH}/enabled/#{name}.conf"
+      path = "#{DevTools::Constants::Config::PATH}/nodes/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)
     end
 
@@ -14,7 +21,7 @@ module DevTools
       cmd += "-cpu #{@conf.cpu} "
       cmd += "-smp #{@conf.cores} "
       cmd += "-enable-kvm "
-      cmd += "-hva #{@conf.image_location} "
+      cmd += "-hda #{@conf.image_location} "
       cmd += "-vnc :#{@conf.vnc_port} "
       cmd += "-net nic,macaddr=#{@conf.mac_addr} -net tap "
 

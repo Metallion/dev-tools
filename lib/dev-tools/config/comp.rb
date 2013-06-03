@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 module DevTools::Config
-  class Comp
+  class Comp < Fuguta::Configuration
     param :start_cmd
     param :stop_cmd
 
