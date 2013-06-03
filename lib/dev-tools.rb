@@ -10,6 +10,8 @@ module DevTools
     autoload :Root, 'dev-tools/cli/root'
   end
 
+  autoload :Node, 'dev-tools/node'
+
   module Constants
     autoload :NFS, 'dev-tools/constants/nfs'
   end

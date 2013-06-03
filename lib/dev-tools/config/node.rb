@@ -2,6 +2,7 @@
 
 module DevTools::Config
   class Node
+    param :name
     param :image_location
     param :memory_size, :default => 3072
     param :cpu, :default => "host"
