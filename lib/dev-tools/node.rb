@@ -29,5 +29,14 @@ module DevTools
       pid = spawn(cmd)
       Process.detach pid
     end
+
+    def run(cmd)
+      key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
+      user = @conf.username
+      ip = @conf.ip_address
+
+      puts "stopping #{@conf.name}"
+      DevTools::Shell.run("ssh -i #{key} #{user}@#{ip} #{cmd}")
+    end
   end
 end

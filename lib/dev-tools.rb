@@ -21,6 +21,8 @@ module DevTools
   end
 
   autoload :Node, 'dev-tools/node'
+  autoload :Shell, 'dev-tools/shell'
+  autoload :Bridge, 'dev-tools/bridge'
 
   module Constants
     autoload :NFS, 'dev-tools/constants/nfs'
