@@ -38,5 +38,13 @@ module DevTools
       DevTools.logger.info "stopping #{@conf.name}"
       DevTools::Shell.run("ssh -i #{key} #{user}@#{ip} #{cmd}")
     end
+
+    def enter
+      key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
+      user = @conf.username
+      ip = @conf.ip_address
+
+      DevTools::Shell.run("ssh -i #{key} #{user}@#{ip}")
+    end
   end
 end

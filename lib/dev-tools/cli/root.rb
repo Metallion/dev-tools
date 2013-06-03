@@ -2,7 +2,7 @@
 
 module DevTools::Cli
   class Root < Thor
-    desc "start [options]", "Starts all nodes"
+    desc "start [options]", "Starts all nodes."
     method_option :no_bridge, :type => :boolean, :default => false, :desc => "Don't create the bridge."
     method_option :no_nodes, :type => :boolean, :default => false, :desc => "Don't start the nodes."
     def start
@@ -16,9 +16,14 @@ module DevTools::Cli
       DevTools::Node.enabled.each {|node| node.start } unless options[:no_nodes]
     end
 
-    desc "stop", "Stops all nodes"
+    desc "stop", "Stops all nodes."
     def stop
       DevTools::Node.enabled.each {|node| node.run("poweroff") }
+    end
+
+    desc "enter", "SSH's into a node."
+    def enter(node)
+      DevTools::Node.new(node).enter
     end
   end
 end
