@@ -18,12 +18,14 @@ module DevTools::Cli
 
     desc "stop", "Stops all nodes."
     def stop
-      DevTools::Node.enabled.each {|node| node.run("poweroff") }
+      DevTools::Node.enabled.each {|node| node.stop }
     end
 
     desc "enter", "SSH's into a node."
     def enter(node)
       DevTools::Node.new(node).enter
     end
+
+    register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp sub-command", "Operations for node components")
   end
 end

@@ -2,6 +2,7 @@
 
 module DevTools
   class Node
+    attr_reader :comps
 
     def self.enabled
       DevTools.conf.enabled_nodes.map {|node_name|
@@ -12,6 +13,14 @@ module DevTools
     def initialize(name)
       path = "#{DevTools::Constants::Config::PATH}/nodes/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)
+
+      @comps = {}
+      DevTools::Constants::Config::PROJECTS.each { |project_name|
+        @comps[project_name] = []
+        @conf.send("#{project_name}_comps").each { |comp_name|
+          @comps[project_name] << DevTools::Component.new(self,project_name,comp_name)
+        }
+      }
     end
 
     def start
@@ -30,12 +39,16 @@ module DevTools
       Process.detach pid
     end
 
+    def stop
+      DevTools.logger.info "stopping #{@conf.name}"
+      run("poweroff")
+    end
+
     def run(cmd)
       key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
       user = @conf.username
       ip = @conf.ip_address
 
-      DevTools.logger.info "stopping #{@conf.name}"
       DevTools::Shell.run("ssh -i #{key} #{user}@#{ip} #{cmd}")
     end
 

@@ -5,7 +5,7 @@ module DevTools::Config
     param :start_cmd
     param :stop_cmd
 
-    param :show_log?, :default => false
+    param :show_log, :default => false
     param :log_file, :default => nil
   end
 

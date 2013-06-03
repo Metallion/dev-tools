@@ -4,6 +4,7 @@ require 'rubygems'
 require 'logger'
 
 module DevTools
+  DT_ROOT = File.expand_path('../..',__FILE__)
 
   def self.conf
     @conf
@@ -23,9 +24,11 @@ module DevTools
   module Cli
     require 'thor'
     autoload :Root, 'dev-tools/cli/root'
+    autoload :Comp, 'dev-tools/cli/comp'
   end
 
   autoload :Node, 'dev-tools/node'
+  autoload :Component, 'dev-tools/component'
   autoload :Shell, 'dev-tools/shell'
   autoload :Bridge, 'dev-tools/bridge'
   autoload :Logger, 'dev-tools/logger'
