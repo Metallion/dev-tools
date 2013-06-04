@@ -10,6 +10,8 @@ module DevTools::Config
     param :vnc_port
     param :mac_addr
 
+    param :nfs_mounts, :default => ::DevTools::Constants::NFS::DEFAULT_MOUNTS
+
     param :username, :default => "root"
     param :ip_address
 

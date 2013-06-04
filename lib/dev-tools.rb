@@ -19,6 +19,7 @@ module DevTools
     autoload :Node, 'dev-tools/config/node'
     autoload :Comp, 'dev-tools/config/comp'
     autoload :DevTools, 'dev-tools/config/dev-tools'
+    autoload :NFS, 'dev-tools/config/nfs'
   end
 
   module Cli
@@ -26,6 +27,7 @@ module DevTools
     autoload :Root, 'dev-tools/cli/root'
     autoload :Comp, 'dev-tools/cli/comp'
     autoload :Log, 'dev-tools/cli/log'
+    autoload :NFS, 'dev-tools/cli/nfs'
   end
 
   autoload :Node, 'dev-tools/node'
@@ -34,6 +36,7 @@ module DevTools
   autoload :Shell, 'dev-tools/shell'
   autoload :Bridge, 'dev-tools/bridge'
   autoload :Logger, 'dev-tools/logger'
+  autoload :NFS, 'dev-tools/nfs'
 
   module Constants
     autoload :NFS, 'dev-tools/constants/nfs'

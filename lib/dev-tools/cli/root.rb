@@ -28,5 +28,6 @@ module DevTools::Cli
 
     register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components")
     register(DevTools::Cli::Log, DevTools::Cli::Log.namespace, "log", "Operations for component logs")
+    register(DevTools::Cli::NFS, DevTools::Cli::NFS.namespace, "nfs", "Operations for NFS mounts")
   end
 end
