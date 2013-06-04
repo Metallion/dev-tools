@@ -24,10 +24,12 @@ module DevTools
     end
 
     def bind
+      DevTools.logger.info "Binding #{@conf.real_location} to #{@conf.bind_location}"
       DevTools::Shell.run("mount --bind #{@conf.real_location} #{@conf.bind_location}")
     end
 
     def unbind
+      DevTools.logger.info "Unbinding #{@conf.real_location} from #{@conf.bind_location}"
       DevTools::Shell.run("umount #{@conf.bind_location}")
     end
 
