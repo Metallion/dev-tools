@@ -49,11 +49,15 @@ module DevTools
     end
 
     def run(cmd)
+      DevTools::Shell.run(get_run_cmd(cmd))
+    end
+
+    def get_run_cmd(cmd)
       key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
       user = @conf.username
       ip = @conf.ip_address
 
-      DevTools::Shell.run("ssh -i #{key} #{user}@#{ip} #{cmd}")
+      "ssh -i #{key} #{user}@#{ip} #{cmd}"
     end
 
     def enter

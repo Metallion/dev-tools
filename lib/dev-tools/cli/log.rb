@@ -17,7 +17,9 @@ module DevTools::Cli
       end
       comps.each{ |comp|
         next unless comp.show_log?
-        screen.open("#{comp.node.name}-#{comp.name}","tail -f #{comp.log_path}")
+        screen.open("#{comp.node.name}-#{comp.name}",
+          comp.node.get_run_cmd("tail -f #{comp.log_path}")
+        )
       }
 
       screen.attach
