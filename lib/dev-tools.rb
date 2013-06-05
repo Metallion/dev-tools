@@ -28,6 +28,7 @@ module DevTools
     autoload :Comp, 'dev-tools/cli/comp'
     autoload :Log, 'dev-tools/cli/log'
     autoload :NFS, 'dev-tools/cli/nfs'
+    autoload :Node, 'dev-tools/cli/node'
   end
 
   autoload :Node, 'dev-tools/node'
