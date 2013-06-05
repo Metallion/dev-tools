@@ -10,6 +10,12 @@ module DevTools
       }
     end
 
+    def self.db_node(project)
+      enabled.find {|node|
+        node.comps[project].find {|comp| comp.name == "mysql"}
+      }
+    end
+
     def initialize(name)
       path = "#{DevTools::Constants::Config::PATH}/nodes/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)

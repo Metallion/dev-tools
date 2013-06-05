@@ -26,6 +26,7 @@ module DevTools::Cli
       DevTools::Node.new(node).enter
     end
 
+    register(DevTools::Cli::DB, DevTools::Cli::DB.namespace, "db", "Operations for project databases")
     register(DevTools::Cli::Node, DevTools::Cli::Node.namespace, "node", "Operations for nodes")
     register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components")
     register(DevTools::Cli::Log, DevTools::Cli::Log.namespace, "log", "Operations for component logs")
