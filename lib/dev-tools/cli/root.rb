@@ -26,10 +26,11 @@ module DevTools::Cli
       DevTools::Node.new(node).enter
     end
 
-    register(DevTools::Cli::DB, DevTools::Cli::DB.namespace, "db", "Operations for project databases")
-    register(DevTools::Cli::Node, DevTools::Cli::Node.namespace, "node", "Operations for nodes")
-    register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components")
-    register(DevTools::Cli::Log, DevTools::Cli::Log.namespace, "log", "Operations for component logs")
-    register(DevTools::Cli::NFS, DevTools::Cli::NFS.namespace, "nfs", "Operations for NFS mounts")
+    register(DevTools::Cli::Sync, DevTools::Cli::Sync.namespace, "sync", "Operations for syncing folders between nodes.")
+    register(DevTools::Cli::DB, DevTools::Cli::DB.namespace, "db", "Operations for project databases.")
+    register(DevTools::Cli::Node, DevTools::Cli::Node.namespace, "node", "Operations for nodes.")
+    register(DevTools::Cli::Comp, DevTools::Cli::Comp.namespace, "comp", "Operations for node components.")
+    register(DevTools::Cli::Log, DevTools::Cli::Log.namespace, "log", "Operations for component logs.")
+    register(DevTools::Cli::NFS, DevTools::Cli::NFS.namespace, "nfs", "Operations for NFS mounts.")
   end
 end
