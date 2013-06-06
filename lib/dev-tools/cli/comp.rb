@@ -7,7 +7,7 @@ module DevTools::Cli
 
     no_tasks {
       def start_stop(project,comp,node,action)
-        raise "Impossible action: #{action.inspect}. Possible actions are: #{PA.map{|a| a.inspect}.join(",")}" unless POSSIBLE_ACTIONS.member?(action)
+        raise "Impossible action: #{action.inspect}. Possible actions are: #{PA.map{|a| a.inspect}.join(",")}" unless PA.member?(action)
         if node
           comps = if comp
             [DevTools::Node.new(node).get_comp(project,comp)]
