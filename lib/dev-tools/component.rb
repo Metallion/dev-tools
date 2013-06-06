@@ -35,6 +35,11 @@ module DevTools
       @node.run(@conf.stop_cmd)
     end
 
+    def restart
+      stop
+      start
+    end
+
     def show_log?
       @conf.show_log
     end

@@ -6,7 +6,7 @@ module DevTools::Cli
 
     no_tasks {
       def start_stop(project,comp,node,action)
-        #action should be :start or :stop
+        #action should be :start, :stop or restart
         if node
           comps = if comp
             [DevTools::Node.new(node).get_comp(project,comp)]
@@ -23,26 +23,15 @@ module DevTools::Cli
       end
     }
 
-    desc "start #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Starts components on nodes. Running this without options starts all components on all nodes for a project."
-    method_option :comp, :type => :string, :desc => "The name of the component we want to start.", :aliases => :c
-    method_option :node, :type => :string, :desc => "The name of the node whose components we want to start.", :aliases => :n
-    def start(project)
-      start_stop(project,options[:comp],options[:node],:start)
-    end
+    [:start, :stop, :restart].each { |action|
+      capital_action = action.to_s.slice(0,1).capitalize + action.to_s.slice(1..-1)
 
-    desc "stop #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Stops components on nodes. Running this without options stops all components on all nodes for a project."
-    method_option :comp, :type => :string, :desc => "The name of the component we want to stop.", :aliases => :c
-    method_option :node, :type => :string, :desc => "The name of the node whose components we want to stop.", :aliases => :n
-    def stop(project)
-      start_stop(project,options[:comp],options[:node],:stop)
-    end
-
-    desc "restart #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Restarts components on nodes. Running this without options restarts all components on all nodes for a project."
-    method_option :comp, :type => :string, :desc => "The name of the component we want to restart.", :aliases => :c
-    method_option :node, :type => :string, :desc => "The name of the node whose components we want to restart.", :aliases => :n
-    def restart(project)
-      start_stop(project,options[:comp],options[:node],:stop)
-      start_stop(project,options[:comp].options[:node],:start)
-    end
+      desc "#{action} #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "#{capital_action}s components on nodes. Running this without options #{action}s all components on all nodes for a project."
+      method_option :comp, :type => :string, :desc => "The name of the component we want to #{action}.", :aliases => :c
+      method_option :node, :type => :string, :desc => "The name of the node whose components we want to #{action}.", :aliases => :n
+      define_method(action) do |project|
+        start_stop(project,options[:comp],options[:node],action)
+      end
+    }
   end
 end
