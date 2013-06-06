@@ -45,5 +45,6 @@ module DevTools
   module Constants
     autoload :NFS, 'dev-tools/constants/nfs'
     autoload :Config, 'dev-tools/constants/config'
+    autoload :Component, 'dev-tools/constants/component'
   end
 end

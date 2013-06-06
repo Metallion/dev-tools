@@ -10,12 +10,17 @@ module DevTools
       end
     end
 
-    def stop(node = nil)
+    def self.stop(node = nil)
       if node
         DevTools::Component.new(node,"common","sync").stop
       else
         DevTools::Shell.run("systemctl stop btsync.service")
       end
+    end
+
+    def self.restart(node = nil)
+      stop(node)
+      start(node)
     end
   end
 end

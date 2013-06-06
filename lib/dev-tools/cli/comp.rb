@@ -2,12 +2,12 @@
 
 module DevTools::Cli
   class Comp < Thor
-    POSSIBLE_ACTIONS=[:start, :stop, :restart]
+    PA=DevTools::Constants::Component::POSSIBLE_ACTIONS
     namespace :comp
 
     no_tasks {
       def start_stop(project,comp,node,action)
-        raise "Impossible action: #{action.inspect}. Possible actions are: #{POSSIBLE_ACTIONS.map{|a| a.inspect}.join(",")}" unless POSSIBLE_ACTIONS.member?(action)
+        raise "Impossible action: #{action.inspect}. Possible actions are: #{PA.map{|a| a.inspect}.join(",")}" unless POSSIBLE_ACTIONS.member?(action)
         if node
           comps = if comp
             [DevTools::Node.new(node).get_comp(project,comp)]
@@ -24,7 +24,7 @@ module DevTools::Cli
       end
     }
 
-    POSSIBLE_ACTIONS.each { |action|
+    PA.each { |action|
       capital_action = action.to_s.slice(0,1).capitalize + action.to_s.slice(1..-1)
 
       desc "#{action} #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "#{capital_action}s components on nodes. Running this without options #{action}s all components on all nodes for a project."
