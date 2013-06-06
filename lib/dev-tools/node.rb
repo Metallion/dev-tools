@@ -2,6 +2,12 @@
 
 module DevTools
   class Node
+    # These are all the components that this node has
+    # Format:
+    # {
+    #   vdc => ["mysql", "dcmgr", "collector"],
+    #   vnet => ["redis", "vnmgr", "dba"]
+    # }
     attr_reader :comps
 
     def self.enabled
@@ -10,10 +16,12 @@ module DevTools
       }
     end
 
+    def self.enabled_with_comp(project,comp)
+      enabled.find {|node| node.has_comp?(comp) }
+    end
+
     def self.db_node(project)
-      enabled.find {|node|
-        node.comps[project].find {|comp| comp.name == "mysql"}
-      }
+      enabled_with_comp(project,"mysql")
     end
 
     def initialize(name)
@@ -27,6 +35,14 @@ module DevTools
           @comps[project_name] << DevTools::Component.new(self,project_name,comp_name)
         }
       }
+    end
+
+    def has_comp?(project,comp)
+      get_comp ? true : false
+    end
+
+    def get_comp(project,comp_name)
+      self.comps[project].find{|c|c.name == comp_name}
     end
 
     def name

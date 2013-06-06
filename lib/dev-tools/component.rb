@@ -4,10 +4,14 @@ module DevTools
   class Component
     attr_reader :node
 
-    def self.enabled(project)
+    def self.enabled(project, comp = nil)
       DevTools::Node.enabled.map { |node|
-        node.comps[project]
-      }.flatten
+        if comp
+          node.get_comp(project,comp)
+        else
+          node.comps[project]
+        end
+      }.flatten.compact
     end
 
     def initialize(node,project,name)
