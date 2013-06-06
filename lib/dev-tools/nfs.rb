@@ -3,7 +3,7 @@
 module DevTools
   class NFS
     def self.enabled
-      DevTools::Constants::NFS::DEFAULT_MOUNTS.map { |mount| NFS.new(mount) }
+      DevTools.conf.enabled_nfs.map { |mount| NFS.new(mount) }
     end
 
     def self.start

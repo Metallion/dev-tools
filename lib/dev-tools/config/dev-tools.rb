@@ -3,6 +3,7 @@
 module DevTools::Config
   class DevTools < Fuguta::Configuration
     param :enabled_nodes
+    param :enabled_nfs
 
     param :bridge_ip
     param :bridge_ip_prefix
