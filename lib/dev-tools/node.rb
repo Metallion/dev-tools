@@ -17,7 +17,7 @@ module DevTools
     end
 
     def self.enabled_with_comp(project,comp)
-      enabled.find {|node| node.has_comp?(comp) }
+      enabled.find {|node| node.has_comp?(project,comp) }
     end
 
     def self.db_node(project)
@@ -38,7 +38,7 @@ module DevTools
     end
 
     def has_comp?(project,comp)
-      get_comp ? true : false
+      get_comp(project,comp) ? true : false
     end
 
     def get_comp(project,comp_name)
