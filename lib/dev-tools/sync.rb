@@ -6,7 +6,7 @@ module DevTools
       if node
         DevTools::Component.new(node,"common","sync").start
       else
-        DevTools::Shell.run("systemctl start btsync.service")
+        DevTools::Shell.run("/opt/btsync/btsync --config /etc/btsync/btsync.conf")
       end
     end
 
@@ -14,7 +14,7 @@ module DevTools
       if node
         DevTools::Component.new(node,"common","sync").stop
       else
-        DevTools::Shell.run("systemctl stop btsync.service")
+        DevTools::Shell.run("'kill `cat /opt/btsync/btsync.pid`'")
       end
     end
 
