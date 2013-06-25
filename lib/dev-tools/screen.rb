@@ -7,16 +7,16 @@ module DevTools
     end
 
     def init
-      DevTools::Shell.run("screen -L -d -m -S #{@title} -t #{@title}")
+      DevTools::Shell.run("tmux new -ds #{@title}")
     end
 
     def open(subtitle,cmd)
-      DevTools::Shell.run("screen -L -r #{@title} -x -X screen -t #{subtitle}")
-      DevTools::Shell.run("screen -L -r #{@title} -x -p #{subtitle} -X stuff '#{cmd}\n'")
+      DevTools::Shell.run("tmux new-window -t #{@title} -n #{subtitle}")
+      DevTools::Shell.run("tmux send -t #{@title} '#{cmd}' ENTER")
     end
 
     def attach
-      DevTools::Shell.run("screen -x #{@title}")
+      DevTools::Shell.run("tmux attach -t #{@title}")
     end
   end
 end
