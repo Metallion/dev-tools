@@ -6,6 +6,7 @@ module DevTools::Cli
     method_option :no_bridge, :type => :boolean, :default => false, :desc => "Don't create the bridge."
     method_option :no_nodes, :type => :boolean, :default => false, :desc => "Don't start the nodes."
     def start
+      raise "Must be run as root" unless Process.uid == 0
       unless options[:no_bridge]
         c = DevTools.conf
         bridge = DevTools::Bridge.new(c.bridge_ip,c.bridge_ip_prefix,c.bridge_devname)
