@@ -5,7 +5,7 @@ module DevTools
     attr_reader :node
 
     def self.enabled(project, comp = nil)
-      DevTools::Node.enabled.map { |node|
+      DevTools::Node.enabled(project).map { |node|
         if comp
           node.get_comp(project,comp)
         else
