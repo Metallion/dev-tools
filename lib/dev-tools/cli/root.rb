@@ -2,10 +2,10 @@
 
 module DevTools::Cli
   class Root < Thor
-    desc "start [options]", "Does a bunch in initial settings and starts all enabled nodes."
+    desc "start #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Does a bunch in initial settings and starts all enabled nodes."
     method_option :no_bridge, :type => :boolean, :default => false, :desc => "Don't create the bridge."
     method_option :no_nodes, :type => :boolean, :default => false, :desc => "Don't start the nodes."
-    def start
+    def start(project)
       raise "Must be run as root" unless Process.uid == 0
       unless options[:no_bridge]
         c = DevTools.conf
@@ -14,12 +14,12 @@ module DevTools::Cli
         bridge.share_internet(c.internet_nic)
       end
 
-      DevTools::Node.enabled.each {|node| node.start } unless options[:no_nodes]
+      DevTools::Node.enabled(project).each {|node| node.start } unless options[:no_nodes]
     end
 
-    desc "stop", "Stops all nodes."
-    def stop
-      DevTools::Node.enabled.each {|node| node.stop }
+    desc "stop #{DevTools::Constants::Config::PROJECTS.join("|")}", "Stops all nodes."
+    def stop(project)
+      DevTools::Node.enabled(project).each {|node| node.stop }
     end
 
     desc "enter", "SSH's into a node."

@@ -9,11 +9,16 @@ module DevTools
     #   vnet => ["redis", "vnmgr", "dba"]
     # }
     attr_reader :comps
+    attr_reader :projects
 
-    def self.enabled
-      DevTools.conf.enabled_nodes.map {|node_name|
+    def self.enabled(project = nil)
+      nodes = DevTools.conf.enabled_nodes.map {|node_name|
         Node.new(node_name)
       }
+
+      nodes.delete_if {|node| !node.projects.member?(project) } if project
+
+      nodes
     end
 
     def self.enabled_with_comp(project,comp)
@@ -27,6 +32,8 @@ module DevTools
     def initialize(name)
       path = "#{DevTools::Constants::Config::PATH}/nodes/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)
+
+      @projects = @conf.projects
 
       @comps = {}
       DevTools::Constants::Config::PROJECTS.each { |project_name|

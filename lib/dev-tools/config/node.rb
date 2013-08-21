@@ -15,6 +15,11 @@ module DevTools::Config
     param :username, :default => "root"
     param :ip_address
 
+    # Decides which projects this node is a part of
+    # Can hold either "vnet", "vdc" or both
+    param :projects, :default => []
+
+    # Decides which components of a project this node has
     param :vdc_comps, :default => []
     param :vnet_comps, :default => []
   end
