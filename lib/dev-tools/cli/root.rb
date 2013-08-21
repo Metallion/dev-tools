@@ -2,7 +2,7 @@
 
 module DevTools::Cli
   class Root < Thor
-    desc "start #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Does a bunch in initial settings and starts all enabled nodes."
+    desc "start #{DevTools.projects_list} [options]", "Does a bunch in initial settings and starts all enabled nodes."
     method_option :no_bridge, :type => :boolean, :default => false, :desc => "Don't create the bridge."
     method_option :no_nodes, :type => :boolean, :default => false, :desc => "Don't start the nodes."
     def start(project)
@@ -17,7 +17,7 @@ module DevTools::Cli
       DevTools::Node.enabled(project).each {|node| node.start } unless options[:no_nodes]
     end
 
-    desc "stop #{DevTools::Constants::Config::PROJECTS.join("|")}", "Stops all nodes."
+    desc "stop #{DevTools.projects_list}", "Stops all nodes."
     def stop(project)
       DevTools::Node.enabled(project).each {|node| node.stop }
     end

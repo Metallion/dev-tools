@@ -4,7 +4,7 @@ module DevTools::Cli
   class Log < Thor
     namespace 'log'
 
-    desc "show #{DevTools::Constants::Config::PROJECTS.join("|")} [options]", "Show the "
+    desc "show #{DevTools.projects_list} [options]", "Show the "
     method_option :node, :type => :string, :desc => "The name of a node whose log to show.", :aliases => :n
     def show(project)
       screen = DevTools::Screen.new(project)

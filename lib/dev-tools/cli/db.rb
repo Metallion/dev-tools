@@ -4,7 +4,7 @@ module DevTools::Cli
   class DB < Thor
     namespace :db
 
-    desc "reset #{DevTools::Constants::Config::PROJECTS.join("|")}", "Resets the database for a project."
+    desc "reset #{DevTools.projects_list}", "Resets the database for a project."
     def reset(project)
       case project
       when "vdc"

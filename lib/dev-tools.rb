@@ -6,6 +6,11 @@ require 'logger'
 module DevTools
   DT_ROOT = File.expand_path('../..',__FILE__)
 
+  # Some syntax sugar for a listing of projects often used in the cli
+  def self.projects_list
+    DevTools::Constants::Config::PROJECTS.join("|")
+  end
+
   def self.conf
     @conf
   end
