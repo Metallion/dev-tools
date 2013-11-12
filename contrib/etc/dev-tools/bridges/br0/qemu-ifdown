@@ -1,0 +1,9 @@
+#!/bin/sh
+ 
+ echo "Executing $0"
+ #echo "Bringing up $1 for bridged mode..."
+ sudo /sbin/ifconfig $1 0.0.0.0 promisc up
+ echo "Removing $1 from br0..."
+ sudo /usr/sbin/brctl delif br0 $1
+ sleep 2
+

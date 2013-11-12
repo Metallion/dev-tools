@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ echo "Executing $0"
+ echo "Bringing up $1 for bridged mode..."
+ sudo /sbin/ifconfig $1 0.0.0.0 promisc up
+ echo "Adding $1 to br1..."
+ sudo /usr/sbin/brctl addif br1 $1
+ # sleep 2
+
