@@ -57,15 +57,20 @@ module DevTools
     end
 
     def start
-      cmd = ""
-      cmd += "qemu-system-x86_64 "
-      cmd += "-m #{@conf.memory_size} "
-      cmd += "-cpu #{@conf.cpu} "
-      cmd += "-smp #{@conf.cores} "
-      cmd += "-enable-kvm "
-      cmd += "-hda #{@conf.image_location} "
-      cmd += "-vnc :#{@conf.vnc_port} "
-      cmd += "-net nic,macaddr=#{@conf.mac_addr} -net tap "
+      cmd = "qemu-system-x86_64 " +
+         "-m #{@conf.memory_size} " +
+         "-cpu #{@conf.cpu} " +
+         "-smp #{@conf.cores} " +
+         "-enable-kvm " +
+         "-hda #{@conf.image_location} " +
+         "-vnc :#{@conf.vnc_port} "
+
+      conf_path = DevTools::Constants::Config::PATH
+      @conf.vifs.each { |vif|
+        cmd += "-net nic,macaddr=#{vif[:mac_addr]} " +
+          "-net tap,script=#{conf_path}/bridges/#{vif[:bridge]}/qemu-ifup," +
+          "downscript=#{conf_path}/bridges/#{vif[:bridge]}/qemu-ifdown "
+      }
 
       DevTools.logger.info "starting #{@conf.name}"
       pid = spawn(cmd)
@@ -84,7 +89,7 @@ module DevTools
     def get_run_cmd(cmd)
       key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
       user = @conf.username
-      ip = @conf.ip_address
+      ip = @conf.ssh_ipv4
 
       "ssh -i #{key} #{user}@#{ip} #{cmd}"
     end
@@ -92,7 +97,7 @@ module DevTools
     def enter
       key = DevTools::Constants::Config::SSH_PRIVATE_KEY_PATH
       user = @conf.username
-      ip = @conf.ip_address
+      ip = @conf.ssh_ipv4
 
       DevTools::Shell.run("ssh -i #{key} #{user}@#{ip}")
     end

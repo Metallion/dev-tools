@@ -5,9 +5,7 @@ module DevTools::Config
     param :enabled_nodes
     param :enabled_nfs
 
-    param :bridge_ip
-    param :bridge_ip_prefix
-    param :bridge_devname, :default => "br0"
+    param :bridges
 
     param :internet_nic, :default => "eth0"
   end

@@ -7,12 +7,16 @@ module DevTools::Cli
     method_option :no_nodes, :type => :boolean, :default => false, :desc => "Don't start the nodes."
     def start(project)
       raise "Must be run as root" unless Process.uid == 0
+      c = DevTools.conf
+
       unless options[:no_bridge]
-        c = DevTools.conf
-        bridge = DevTools::Bridge.new(c.bridge_ip,c.bridge_ip_prefix,c.bridge_devname)
-        bridge.create
-        bridge.share_internet(c.internet_nic)
+        c.bridges.each { |b|
+          bridge = DevTools::Bridge.new(b[:ipv4], b[:prefix], b[:name])
+          bridge.create
+        }
       end
+
+      DevTools::Bridge.share_internet(c.internet_nic)
 
       DevTools::Node.enabled(project).each {|node| node.start } unless options[:no_nodes]
     end
