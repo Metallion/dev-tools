@@ -34,7 +34,6 @@ module DevTools
     autoload :Log, 'dev-tools/cli/log'
     autoload :NFS, 'dev-tools/cli/nfs'
     autoload :Node, 'dev-tools/cli/node'
-    autoload :DB, 'dev-tools/cli/db'
   end
 
   autoload :Node, 'dev-tools/node'
