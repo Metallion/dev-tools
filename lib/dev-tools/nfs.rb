@@ -24,18 +24,21 @@ module DevTools
     end
 
     def bind
-      DevTools.logger.info "Binding #{@conf.real_location} to #{@conf.bind_location}"
-      DevTools::Shell.run("mount --bind #{@conf.real_location} #{@conf.bind_location}")
+      locations = [@conf.real_location, @conf.bind_location]
+      DevTools.logger.info "Binding %s to %s" % locations
+      DevTools::Shell.run("mount --bind %s %s" % locations)
     end
 
     def unbind
-      DevTools.logger.info "Unbinding #{@conf.real_location} from #{@conf.bind_location}"
+      DevTools.logger.info "Unbinding %s from %s" %
+       [@conf.real_location, @conf.bind_location]
       DevTools::Shell.run("umount #{@conf.bind_location}")
     end
 
     def mount(node)
       DevTools.logger.info "mounting #{@conf.name} on #{node.name}"
-      node.run("mount -t nfs #{DevTools.conf.bridge_ip}:#{@conf.bind_location} #{@conf.mountpoint}")
+      node.run("mount -t nfs %s:%s %s" %
+        [@conf.server_ip, @conf.bind_location, @conf.mountpoint])
     end
 
     def unmount(node)

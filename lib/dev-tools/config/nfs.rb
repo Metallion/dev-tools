@@ -6,5 +6,6 @@ module DevTools::Config
     param :mountpoint
     param :bind_location
     param :real_location
+    param :server_ip
   end
 end
