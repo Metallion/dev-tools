@@ -13,5 +13,10 @@ module DevTools::Cli
     def stop(node_cfg)
       DevTools::Node.new(node_cfg).stop
     end
+
+    desc "runcmd NODE COMMAND [SSH_OPTIONS]", "runs a command on a node"
+    def runcmd(node_cfg, cmd, options = "")
+      DevTools::Node.new(node_cfg).run(cmd)
+    end
   end
 end

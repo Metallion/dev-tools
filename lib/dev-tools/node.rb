@@ -8,6 +8,7 @@ module DevTools
     #   vdc => ["mysql", "dcmgr", "collector"],
     #   vnet => ["redis", "vnmgr", "dba"]
     # }
+    attr_reader :name
     attr_reader :comps
     attr_reader :projects
 
@@ -30,6 +31,7 @@ module DevTools
     end
 
     def initialize(name)
+      @name = name
       path = "#{DevTools::Constants::Config::PATH}/nodes/#{name}.conf"
       @conf = DevTools::Config::Node.load(path)
 
