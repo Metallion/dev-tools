@@ -35,7 +35,6 @@ module DevTools
     autoload :NFS, 'dev-tools/cli/nfs'
     autoload :Node, 'dev-tools/cli/node'
     autoload :DB, 'dev-tools/cli/db'
-    autoload :Sync, 'dev-tools/cli/sync'
   end
 
   autoload :Node, 'dev-tools/node'
@@ -45,7 +44,6 @@ module DevTools
   autoload :Bridge, 'dev-tools/bridge'
   autoload :Logger, 'dev-tools/logger'
   autoload :NFS, 'dev-tools/nfs'
-  autoload :Sync, 'dev-tools/sync'
 
   module Constants
     autoload :Config, 'dev-tools/constants/config'
