@@ -12,12 +12,16 @@ module DevTools
     attr_reader :comps
     attr_reader :projects
 
-    def self.enabled(project = nil)
+    def self.enabled(project = nil, options = {})
       nodes = DevTools.conf.enabled_nodes.map {|node_name|
         Node.new(node_name)
       }
 
       nodes.delete_if {|node| !node.projects.member?(project) } if project
+
+      if options[:virtual_only]
+        nodes.delete_if { |node| node.physical? }
+      end
 
       nodes
     end
@@ -56,6 +60,10 @@ module DevTools
 
     def name
       @conf.name
+    end
+
+    def physical?
+      @conf.physical
     end
 
     def start

@@ -19,6 +19,9 @@ module DevTools::Config
     # Can hold either "vnet", "vdc" or both
     param :projects, :default => []
 
+    # Set this to true to stop dev-tools from trying to manage kvm for this node
+    param :physical, :default => false
+
     # Decides which components of a project this node has
     param :vdc_comps, :default => []
     param :vnet_comps, :default => []

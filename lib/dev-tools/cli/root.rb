@@ -18,7 +18,10 @@ module DevTools::Cli
 
       DevTools::Bridge.share_internet(c.internet_nic)
 
-      DevTools::Node.enabled(project).each {|node| node.start } unless options[:no_nodes]
+      DevTools::Node.enabled(project, virtual_only: true).each do |node|
+type "physical"
+        node.start
+      end unless options[:no_nodes]
     end
 
     desc "stop #{DevTools.projects_list}", "Stops all nodes."
